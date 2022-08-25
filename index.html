@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ReactJS-Random Quote Machine</title>
+        <meta name="description" content="ReactJS-Random Quote Machine">
+        <meta name="author" content="Mseong">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="stylesheet/style.css">
+    </head>
+    <body>
+        <div id="ms"></div>
+        <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>
+        <script type="text/babel">
+            const quotes = [{quote:"\"Strive not to be a success, but rather to be of value.\"",author:" - Albert Einstein"}, 
+                {quote:"\"You can never cross the ocean until you have the courage to lose sight of the shore.\"",author:" - Christopher Columbus"},
+                {quote: "\"People often say that motivation doesn’t last. Well, neither does bathing.  That’s why we recommend it daily.\"",author:" – Zig Ziglar"},
+                {quote:"\"There is only one way to avoid criticism: do nothing, say nothing, and be nothing.\"",author:" - Aristotle"},
+                {quote:"\"Life shrinks or expands in proportion to one's courage.\"",author:" - Anais Nin" },
+                {quote:"\"When I was 5 years old, my mother always told me that happiness was the key to life.  When I went to school, they asked me what I wanted to be when I grew up.  I wrote down ‘happy’.  They told me I didn’t understand the assignment, and I told them they didn’t understand life.\"",author:" – John Lennon"},
+                {quote:"\"What’s money? A man is a success if he gets up in the morning and goes to bed at night and in between does what he wants to do.\"",author:" – Bob Dylan"},
+                {quote:"\"The person who says it cannot be done should not interrupt the person who is doing it.\"",author:" – Chinese Proverb"}];
+
+            const bg=["fish.jpg","friends.jpg","hello.jpg","highway.jpg","landscape.jpg","river.jpg","tree.jpg","water.jpg"]
+
+            const randomNumber=()=> Math.floor(Math.random()*quotes.length);
+
+            class RandomQuoteApp extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    randomNumber:randomNumber()
+                };
+            }
+            componentDidMount() {
+                let bgElement=document.getElementById("bg");
+
+                bgElement.addEventListener("animationend",()=>{
+                let randomBgURL="url('https://raw.githubusercontent.com/mseong123/assets/master/RandomQuoteMachine/"+bg[randomNumber()];
+                bgElement.style.backgroundImage=randomBgURL;
+                bgElement.style.animation="none";
+                setInterval(()=>bgElement.style.animation="",10)
+                })
+                
+            }
+
+            render() {
+                return (
+                    <div className="container">
+                        <div className="bg" id="bg">
+                        </div>
+                        <div id="quote-box">
+                            <blockquote>
+                                <p id="text">{quotes[this.state.randomNumber].quote}</p>
+                                <cite id="author">{quotes[this.state.randomNumber].author}</cite>
+                            </blockquote>
+                            <button id="new-quote" onClick={()=>{this.setState({randomNumber:randomNumber()})}}><i className="fa fa-comment fa-2x"></i></button>
+                                <a href={"https://twitter.com/intent/tweet?text="+quotes[this.state.randomNumber].quote}  className="fa fa-twitter-square fa-3x" 
+                                target="_blank" id="tweet-quote"></a>
+                            <footer>
+                                <small class="copyright">&copy;Created by Mseong</small>
+                            </footer>
+                        </div>
+                    </div>
+                )
+            }
+            } 
+            ReactDOM.render(<RandomQuoteApp/>,document.getElementById("ms"))
+
+        </script>
+    </body>
+</html>

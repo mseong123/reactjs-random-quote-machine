@@ -1,0 +1,106 @@
+body {
+  margin:0;
+  font-family:Montserrat;
+}
+
+.container {
+  overflow:hidden;
+  position:absolute;
+  width:100%;
+  height:100%;
+}
+a {
+  text-decoration:none;
+  color:orange;
+  vertical-align:middle;
+}
+.bg {
+  position:absolute;
+  background-image:url('https://raw.githubusercontent.com/mseong123/assets/master/RandomQuoteMachine/hello.jpg');
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  width:100%;
+  height:100%;
+  opacity:0;
+  animation:bganimate 6.5s linear;
+ }
+
+
+@keyframes bganimate {
+  20% {
+      opacity:1;
+  }
+  90% {
+      opacity:1;
+  }
+
+  100% {
+      transform:scale(1.1);
+      opacity:0;
+  }
+}
+
+
+#quote-box {
+  position:absolute;
+  z-index:1;
+  left:50%;
+  width:320px;
+  margin-left:-180px;
+  padding:20px;
+  top:40px;
+  text-align:center;
+}
+
+#text{
+  color:white;
+  font-weight:700;
+  font-size:20px;
+  line-height:25px;
+  
+}
+#author{
+  font-weight:600;
+}
+
+#new-quote {
+  border-radius:50%;
+  height:50px;
+  width:50px;
+  border:none;
+  margin-right:15px;
+  vertical-align:middle;
+outline:none;
+}
+
+#new-quote:active,
+#new-quote:hover {
+  cursor:pointer;
+}
+
+.copyright {
+color:white;
+}
+
+
+@media (min-width:768px) {
+  #quote-box {
+      width:600px;
+      margin-left:-320px;
+      top:125px;
+      text-align:right;
+      vertical-align:center;
+  }
+  #quote-box > blockquote {
+      text-align:left;
+  }
+  #text   {
+      font-weight:800;
+      line-height:30px;
+      font-size:25px;
+  }
+  #author{
+      font-size:20px;
+  }
+}
